@@ -1,0 +1,7 @@
+mace:
+  mace-crafted: false
+  mace-owner: null
+
+
+messages:
+  crafted: "&b[OPMace] &eOP Mace has been crafted!"

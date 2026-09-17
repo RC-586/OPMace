@@ -1,0 +1,4 @@
+name: OPMace
+version: '1.0'
+main: org.Plugins.OPMace.OPMace
+api-version: '1.21'
