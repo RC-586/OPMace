@@ -9,6 +9,7 @@ import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.CrafterCraftEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.event.inventory.PrepareItemCraftEvent;
@@ -82,6 +83,18 @@ public class OPMaceListener implements Listener {
             Component broadcastMsg = LegacyComponentSerializer.legacyAmpersand().deserialize(rawMessage);
 
             plugin.getServer().broadcast(broadcastMsg);
+        }
+    }
+
+    @EventHandler
+    public void onCrafterCraft(CrafterCraftEvent event) {
+        if (event.getRecipe() == null) return;
+
+        if (event.getRecipe().getResult().getType() == Material.MACE) {
+            if (plugin.getConfig().getBoolean("mace.mace-crafted", false)) {
+                event.setCancelled(true);
+                event.getBlock().setType(Material.CRAFTER);
+            }
         }
     }
 
